@@ -331,16 +331,19 @@ a, button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 50px;
-  background: -o-linear-gradient(235deg, #268ac4 0%, #fff 45%, red 75%, #fff 85%, green 100%);
-  background: linear-gradient(-145deg, #268ac4 0%, #fff 45%, red 75%, #fff 85%, green 100%); }
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  min-height: 100vh;
+  background: -webkit-gradient(linear, left bottom, left top, from(#8281c9), color-stop(70%, #76b176));
+  background: -o-linear-gradient(bottom, #8281c9 0%, #76b176 70%);
+  background: linear-gradient(to top, #8281c9 0%, #76b176 70%); }
 
 .scene {
   width: 200px;
   height: 260px;
   border: 1px solid transparent;
-  -webkit-perspective: 600px;
-  perspective: 600px;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
   border-radius: 5%;
   margin: 50px 20px; }
 
@@ -348,42 +351,41 @@ a, button {
   width: 100%;
   height: 100%;
   position: relative;
-  -webkit-transition: -webkit-transform 1s;
-  transition: -webkit-transform 1s;
-  -o-transition: -o-transform 1s;
-  transition: transform 1s;
-  transition: transform 1s, -webkit-transform 1s, -o-transform 1s;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  cursor: pointer; }
-  .card__face {
+  -webkit-transition: 1.5s;
+  -o-transition: 1.5s;
+  transition: 1.5s;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
+  .card__front {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
     border-radius: 5%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-box-shadow: 0 0 30px rgba(128, 118, 118, 0.6);
-    box-shadow: 0 0 30px rgba(128, 118, 118, 0.6); }
-    .card__face--front {
-      position: absolute;
-      overflow: hidden;
-      border-radius: 5%; }
-    .card__face--reverse {
-      background-color: #f0e9e4;
-      -webkit-transform: rotateY(180deg);
-      transform: rotateY(180deg);
-      padding: 5px; }
-    .card__face--img {
-      width: 50%;
-      height: 70%;
-      position: absolute;
-      top: 15%;
-      bottom: 15%;
-      left: 25%;
-      right: 25%; }
+    z-index: 2; }
+  .card__back {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg); }
 
 .icon__clubs {
   display: -webkit-box;
@@ -407,6 +409,21 @@ a, button {
     font-size: 50px;
     height: 50px;
     margin: 4px 15px; }
+
+.scene:hover .card,
+.scene:focus .card,
+.scene:active .card {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg); }
+
+.card__face--img {
+  width: 50%;
+  height: 70%;
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  left: 25%;
+  right: 25%; }
 
 .icon__heart {
   display: -webkit-box;
@@ -461,27 +478,3 @@ a, button {
     .icon__diamonds--50--right {
       margin-left: 140px;
       margin-top: 100px; }
-
-#flip:checked + .backfaces .card__face--front {
-  -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg); }
-
-#flip:checked + .backfaces .card__face--reverse {
-  -webkit-transform: rotateY(360deg);
-  transform: rotateY(360deg); }
-
-#flip1:checked + .backfaces .card__face--front {
-  -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg); }
-
-#flip1:checked + .backfaces .card__face--reverse {
-  -webkit-transform: rotateY(360deg);
-  transform: rotateY(360deg); }
-
-#flip2:checked + .backfaces .card__face--front {
-  -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg); }
-
-#flip2:checked + .backfaces .card__face--reverse {
-  -webkit-transform: rotateY(360deg);
-  transform: rotateY(360deg); }

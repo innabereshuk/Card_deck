@@ -28,91 +28,102 @@ a, button {
 
 .koloda {
     display: flex;
-    margin: 50px;
-    background: linear-gradient(-145deg, rgb(38, 138, 196) 0%, #fff 45%, red 75%, #fff 85%, green 100%);
+    justify-content: space-around;
+    min-height: 100vh;
+    background: linear-gradient(to top, rgb(130, 129, 201) 0%, rgb(118, 177, 118) 70%);
 }
 
-.scene {
-    width: 200px;
-    height: 260px;
-    border: 1px solid transparent;
-    perspective: 600px;
-    border-radius: 5%;
-    margin: 50px 20px ;
-}
 
-// .card.is-flipped {
-//     transform: rotateY(180deg);
-//   }
 
-.card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 1s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-        &__face {
+ .scene {
+     width: 200px;
+     height: 260px;
+     border: 1px solid transparent;
+     perspective: 1000px;
+     border-radius: 5%;
+     margin: 50px 20px ;
+ }
+
+ .card {
+     width: 100%;
+     height: 100%;
+     position: relative;
+     transform-style: preserve-3d;
+     transition:  1.5s;
+     cursor: pointer;
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+     &__front {
         position: absolute;
         top: 0;
         left: 0;
         height: 100%;
         width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
         border-radius: 5%;
         backface-visibility: hidden;
-        box-shadow: 0 0 30px rgba($color: #807676, $alpha: 0.6);
-            &--front {
-            position: absolute;
-            overflow: hidden;
-            border-radius: 5%;
-            }
-            &--reverse {
-            background-color: rgb(240, 233, 228);
-            transform: rotateY(180deg);
-            padding: 5px;
-        }
-        &--img {
-            width: 50%;
-            height: 70%;
-            position: absolute;
-            top: 15%;
-            bottom: 15%;
-            left: 25%;
-            right: 25%;
-
-         
+        z-index: 2;
+     }
+     &__back {
+         background-color: #fff;
+         padding: 5px;
+         border-radius: 5%;
+         height: 100%;
+         width: 100%;
+         overflow: hidden;
+         backface-visibility: hidden;
+         position: absolute;
+         top: 0;
+         left: 0;
+         transform: rotateY(180deg);
         }
     }
-             
- }
 
-.icon__clubs {
-     display: flex;
-     justify-content: center;
-     font-weight: 900;
-     &--30 {
-         font-size: 30px;
-         height: 30px;
-         position: absolute;
-         &--left {
+   
+ .icon__clubs {
+    display: flex;
+    justify-content: center;
+    font-weight: 900;
+    &--30 {
+        font-size: 30px;
+        height: 30px;
+        position: absolute;
+        &--left {
             top: 0;
             left: 20px;
-         }
-         &--right {
+        }
+        &--right {
             right: 20px;
             bottom: 40px;
-         }
+        }
     }
-     &--50 {
-         font-size: 50px;
-         height: 50px;
-         margin: 4px 15px;
-                     
-     }
+    &--50 {
+        font-size: 50px;
+        height: 50px;
+        margin: 4px 15px;
+                         
+    }
+    
+    }
 
-     }
+    .scene:hover .card,
+    .scene:focus .card,
+    .scene:active .card {
+        transform: rotateY(180deg);
+    }
 
-     .icon__heart {
+   .card__face--img {
+        width: 50%;
+        height: 70%;
+        position: absolute;
+        top: 15%;
+        bottom: 15%;
+        left: 25%;
+        right: 25%;
+   }
+
+   .icon__heart {
         display: flex;
         justify-content: center;
         font-weight: 900;
@@ -122,78 +133,62 @@ a, button {
             height: 30px;
             position: absolute;
             &--left {
-               top: 0;
-               left: 20px;
+                top: 0;
+                left: 20px;
             }
             &--right {
-               right: 20px;
-               bottom: 40px;
+                right: 20px;
+                bottom: 40px;
             }
-       }
+        }
         &--50 {
             font-size: 50px;
             height: 50px;
             margin: 15px 15px;
-                        
+                            
         }
-   
-        }
-
-        .icon__diamonds {
-            display: flex;
-            justify-content: center;
-            font-weight: 900;
-            color: red;
-            &--30 {
-                font-size: 30px;
-                height: 30px;
-                position: absolute;
-                font-weight: 900;
-                &--left {
-                   top: 0;
-                   left: 20px;
-                }
-                &--right {
-                   right: 20px;
-                   bottom: 40px;
-                }
-           }
-            &--50 {
-                font-size: 50px;
-                height: 50px;
-                &--left {
-                    margin-right: 140px;
-                    margin-top: 20px;
-                }
-                &--right {
-                    margin-left: 140px;
-                    margin-top: 100px;
-                }
-             }
        
+    }
+    
+    .icon__diamonds {
+        display: flex;
+        justify-content: center;
+        font-weight: 900;
+        color: red;
+        &--30 {
+            font-size: 30px;
+            height: 30px;
+            position: absolute;
+            font-weight: 900;
+            &--left {
+                top: 0;
+                left: 20px;
+            }
+            &--right {
+                right: 20px;
+                bottom: 40px;
+            }
         }
+        &--50 {
+            font-size: 50px;
+            height: 50px;
+            &--left {
+                margin-right: 140px;
+                margin-top: 20px;
+            }
+            &--right {
+                 margin-left: 140px;
+                 margin-top: 100px;
+            }
+        }
+           
+    }
+    
 
-     #flip:checked+.backfaces .card__face--front{
-         transform:rotateY(180deg);
-     }
-     #flip:checked+.backfaces .card__face--reverse{
-         transform:rotateY(360deg);
-     }
-
-     #flip1:checked+.backfaces .card__face--front{
-        transform:rotateY(180deg);
-    }
-    #flip1:checked+.backfaces .card__face--reverse{
-        transform:rotateY(360deg);
-    }
-
-    #flip2:checked+.backfaces .card__face--front{
-        transform:rotateY(180deg);
-    }
-    #flip2:checked+.backfaces .card__face--reverse{
-        transform:rotateY(360deg);
-    }
+  
  
+
+
   
   
 
